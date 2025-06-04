@@ -15,9 +15,9 @@ export default (function () {
 			return this.#id;
 		}
 
-		updateDetails(updatedInformationObj) {
+		updateTaskDetails(updatedInformationObj) {
 			for (const [key, value] of Object.entries(updatedInformationObj)) {
-				if (key === "status") continue;
+				if (key === "status" || key === "id") continue;
 				this[key] = value;
 			}
 		}
@@ -33,21 +33,3 @@ export default (function () {
 
 	return { createTaskObj };
 })();
-
-// const task1 = createTaskObj({
-// 	title: "Coding",
-// 	description: "Make TODO App Using js",
-// 	dueDate: "2 june",
-// 	priority: "p1",
-// 	project: "Code",
-// });
-
-// console.table(task1);
-// task1.toggleStatus();
-// console.table(task1);
-// task1.updateDetails({
-// 	title: "new title",
-// 	date: "new Date",
-// 	status: false,
-// });
-// console.table(task1);
