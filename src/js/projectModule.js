@@ -33,7 +33,7 @@ export default (function () {
 		}
 	}
 
-	function updateProject(task, newProject) {
+	function updateProjectArray(task, newProject) {
 		popTask(task.id);
 		pushTask(task, newProject);
 	}
@@ -44,7 +44,7 @@ export default (function () {
 		const { project: newProject } = updatedTaskObj;
 
 		if (!(currentProject === newProject)) {
-			updateProject(task, newProject);
+			updateProjectArray(task, newProject);
 		}
 		task.updateTaskDetails(updatedTaskObj);
 	}
