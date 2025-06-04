@@ -1,22 +1,31 @@
 export default (function () {
-	const createdProjects = {};
-	createdProjects.defaultProject = [];
-	const obj = {};
-	obj.defaultProject = {};
+	const createdProjects =
+		JSON.parse(localStorage.getItem("createdProjects")) || {};
+	function saveProjects() {
+		localStorage.setItem("createdProjects", JSON.stringify(createdProjects));
+	}
+
+	if (!createdProjects.defaultProject) {
+		createdProjects.defaultProject = [];
+		saveProjects();
+	}
 
 	function createProject(name) {
 		createdProjects[name] = [];
+		saveProjects();
 	}
 
 	function pushTask(task, newProject = null) {
 		const project = newProject ?? task.project;
 		createdProjects[project].push(task);
+		saveProjects();
 	}
 
 	function popTask(id) {
 		const task = getTaskObj(id);
 		const index = getTaskObjIndex(task);
 		createdProjects[task.project].splice(index, 1);
+		saveProjects();
 	}
 
 	function getTaskObjIndex({ id: taskId, project }) {
