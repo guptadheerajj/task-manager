@@ -57,4 +57,7 @@ export default (function () {
 	const task5 = taskModule.createTaskObj(taskData);
 	projectModule.pushTask(task5);
 	console.log(projectModule.createdProjects);
+
+	console.log("Projects: ->");
+	console.log(projectModule.getAllProjectNames());
 })();

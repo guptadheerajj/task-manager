@@ -58,11 +58,16 @@ export default (function () {
 		task.updateTaskDetails(updatedTaskObj);
 	}
 
+	function getAllProjectNames() {
+		return Object.keys(createdProjects);
+	}
+
 	return {
 		createProject,
 		pushTask,
 		popTask,
 		updateDetails,
+		getAllProjectNames,
 		createdProjects,
 	};
 })();

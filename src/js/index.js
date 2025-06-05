@@ -4,6 +4,9 @@ import middleModule from "./middleModule";
 import "../css/normalize.css";
 import "../css/font.css";
 import "../css/style.css";
+import home from "./home.js";
+
+home.renderSideBar();
 // const task1 = taskModule.createTaskObj({
 // 	title: "Coding",
 // 	description: "Make TODO App Using js",
