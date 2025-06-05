@@ -21,6 +21,8 @@
 	--button-cancel-bg: var(var(--side-hover));
 
 	--primary-font: "Josefin Sans";
+
+	--hr-color: rgba(255, 255, 255, 0.174);
 }
 
 :root[data-theme="light"] {
@@ -32,13 +34,15 @@
 
 	--text-color: #000000;
 
-	--side-hover: #3b3b3b;
+	--side-hover: #ddd;
 	--side-active: #f0fff5;
 
 	--task-hover: #ff9696;
 
 	--button-theme-bg: var(--accent-color-hover);
 	--button-gray-bg: var(var(--side-hover));
+
+	--hr-color: rgba(0, 0, 0, 0.503);
 }
 
 body {
@@ -62,15 +66,19 @@ svg:hover {
 	padding: 0.7rem 0.7rem 1rem;
 }
 
-.side-top {
+.side-top,
+.side-bottom-head {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 2.4rem;
 	padding: 0.7rem;
 }
+.side-top {
+	margin-bottom: 2.4rem;
+}
 
-.side-top > div {
+.side-top > div,
+.side-bottom-head > * {
 	display: flex;
 	align-items: center;
 	gap: 10px;
@@ -110,6 +118,15 @@ svg:hover {
 
 .side-row.tab:focus > svg {
 	fill: var(--accent-color-hover);
+}
+
+hr {
+	border: 1px solid var(--hr-color);
+	margin-top: 2rem;
+}
+
+.side-bottom-head {
+	margin-bottom: 1rem;
 }
 
 .main-content {
