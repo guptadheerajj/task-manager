@@ -1,0 +1,187 @@
+/* Light theme (default) */
+:root {
+	--accent-color-normal: #c4b5fd;
+	--accent-color-hover: #8b5cf6;
+
+	--main-bg: #1e1e1e;
+	--side-bg: #262626;
+
+	--text-color: #ffffff;
+	--text-color-active: var(var(--accent-color-hover));
+
+	--gray: #9b9b9b;
+	--dark-gray: #f0f0f0;
+	--side-hover: #3b3b3b;
+	--side-active: #3b3b3b;
+	--side-active-shadow: var(--accent-color-hover);
+
+	--task-hover: #262626;
+
+	--button-theme-bg: var(--accent-color-hover);
+	--button-cancel-bg: var(var(--side-hover));
+}
+
+:root[data-theme="light"] {
+	--accent-color-normal: #ff9696;
+	--accent-color-hover: #ff5050;
+
+	--main-bg: #fff5f5;
+	--side-bg: #ffe8e8;
+
+	--text-color: #000000;
+
+	--side-hover: #3b3b3b;
+	--side-active: #f0fff5;
+
+	--task-hover: #ff9696;
+
+	--button-theme-bg: var(--accent-color-hover);
+	--button-gray-bg: var(var(--side-hover));
+}
+
+/* Dark theme */
+/* :root[data-theme="dark"] {
+	--accent-color-hover: #a78bfa;
+	--accent-color-normal: #8b5cf6;
+
+	--text-color: #f7fafc;
+	--text-color-secondary: #cbd5e0;
+	--text-color-active: var(--accent-color-hover);
+
+	--bg-primary: #1a202c;
+	--bg-secondary: #2d3748;
+	--sidebar-bg: #4a5568;
+	--sidebar-text: #ffffff;
+
+	--border-color: #4a5568;
+	--shadow: rgba(0, 0, 0, 0.3);
+} */
+
+body {
+	font-family: "Josefin Sans";
+	display: grid;
+	grid-template-columns: 280px 1fr;
+	min-height: 100vh;
+}
+
+.side-bar {
+	padding: 1.5rem;
+}
+
+.side-head {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	font-size: 1rem;
+	font-weight: 700;
+	margin: 4px 0 4rem 0;
+}
+
+.side-head > div {
+	/* display: grid;
+	grid-template-columns: auto auto; */
+	/* align-items: center; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.4rem;
+}
+
+.side-row {
+	font-weight: 400;
+	font-size: 14px;
+	display: flex;
+	gap: 0.8rem;
+	justify-content: flex-start;
+	align-items: center;
+	margin-bottom: 1.2rem;
+}
+
+/* Theme Toggle Button */
+/* .theme-toggle {
+	background: none;
+	border: none;
+	cursor: pointer;
+	position: relative;
+	width: 24px;
+	height: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 4px;
+	transition: background-color 0.3s ease;
+}
+
+.theme-toggle:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-icon {
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	transition: opacity 0.3s ease, transform 0.3s ease;
+} */
+
+/* Light theme - show moon icon */
+/* :root .moon-icon {
+	opacity: 1;
+	transform: rotate(0deg);
+}
+
+:root .sun-icon {
+	opacity: 0;
+	transform: rotate(180deg);
+} */
+
+/* Dark theme - show sun icon */
+/* :root[data-theme="dark"] .moon-icon {
+	opacity: 0;
+	transform: rotate(-180deg);
+}
+
+:root[data-theme="dark"] .sun-icon {
+	opacity: 1;
+	transform: rotate(0deg);
+} */
+
+/* Additional theme-aware styles */
+/* .main-content {
+	background-color: var(--bg-secondary);
+	color: var(--text-color);
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card,
+.task-item,
+.project-item {
+	background-color: var(--bg-primary);
+	border: 1px solid var(--border-color);
+	box-shadow: 0 2px 4px var(--shadow);
+	transition: background-color 0.3s ease, border-color 0.3s ease,
+		box-shadow 0.3s ease;
+}
+
+.text-secondary {
+	color: var(--text-color-secondary);
+} */
+
+/* Focus and hover states */
+/* button:focus,
+input:focus,
+select:focus {
+	outline: 2px solid var(--accent-color-normal);
+	outline-offset: 2px;
+}
+
+button:hover {
+	background-color: var(--accent-color-hover);
+	color: white;
+} */
+
+/* Smooth transitions for all theme-aware elements */
+/* * {
+	transition: background-color 0.3s ease, color 0.3s ease,
+		border-color 0.3s ease;
+} */
