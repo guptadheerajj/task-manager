@@ -6,44 +6,67 @@ import "../css/font.css";
 import "../css/style.css";
 import home from "./home.js";
 import ThemeManager from "./themeManager.js";
-import { da } from "date-fns/locale";
+import { da, id } from "date-fns/locale";
 
 new ThemeManager();
 home.renderSideBar();
 
+function createDOMElement({ tagName, classes, innerText }) {
+	const element = document.createElement(tagName);
+	if (classes.length) {
+		element.classList.add(...classes);
+	}
+	if (innerText) {
+		element.textContent = innerText;
+	}
+
+	return element;
+}
+
 function createTaskHead(taskData) {
-	const taskHead = document.createElement("div");
-	taskHead.classList.add("task-head");
+	const taskHead = createDOMElement({
+		tagName: "div",
+		classes: ["task-head"],
+	});
 
 	// task head left
-	const taskHeadLeft = document.createElement("div");
-	taskHeadLeft.classList.add("task-head-left");
+	const taskHeadLeft = createDOMElement({
+		tagName: "div",
+		classes: ["task-head-left"],
+	});
 
 	const input = document.createElement("input");
 	input.setAttribute("type", "checkbox");
 	input.setAttribute("id", "status");
 	input.setAttribute("status", "status");
 
-	const title = document.createElement("div");
-	title.classList.add("title");
-	title.classList.add("top2px");
-	title.textContent = taskData.title;
+	const title = createDOMElement({
+		tagName: "div",
+		classes: ["title", "top2px"],
+		innerText: taskData.title,
+	});
 
 	taskHeadLeft.append(input, title);
 
 	// task head right
-	const taskHeadRight = document.createElement("div");
-	taskHeadRight.classList.add("task-head-right");
+	const taskHeadRight = createDOMElement({
+		tagName: "div",
+		classes: ["task-head-right"],
+	});
 
-	const priority = document.createElement("div");
-	priority.classList.add(taskData.priority);
-	priority.textContent =
-		taskData.priority[0].toUpperCase() +
-		taskData.priority.slice(1).toLowerCase();
+	const priority = createDOMElement({
+		tagName: "div",
+		classes: ["priority", taskData.priority],
+		innerText:
+			taskData.priority[0].toUpperCase() +
+			taskData.priority.slice(1).toLowerCase(),
+	});
 
-	const date = document.createElement("div");
-	date.classList.add("date");
-	date.textContent = taskData.dueDate;
+	const date = createDOMElement({
+		tagName: "div",
+		classes: ["date"],
+		innerText: taskData.dueDate,
+	});
 
 	taskHeadRight.append(priority, date);
 
@@ -53,12 +76,17 @@ function createTaskHead(taskData) {
 }
 
 function createTaskBottom() {
-	const taskBottom = document.createElement("div");
-	taskBottom.classList.add("task-bottom");
+	const taskBottom = createDOMElement({
+		tagName: "div",
+		classes: ["task-bottom"],
+	});
 
 	// task options
-	const taskOptions = document.createElement("div");
-	taskOptions.classList.add("task-options");
+	const taskOptions = createDOMElement({
+		tagName: "div",
+		classes: ["task-options"],
+	});
+
 	const penSvg = `
 	<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
 		fill="#e8eaed">
@@ -79,8 +107,10 @@ function createTaskBottom() {
 	taskOptions.insertAdjacentHTML("beforeend", deleteSvg);
 
 	// task project
-	const taskProject = document.createElement("div");
-	taskProject.classList.add("task-project");
+	const taskProject = createDOMElement({
+		tagName: "div",
+		classes: ["task-project"],
+	});
 
 	// append to taskBottom
 	taskBottom.append(taskOptions, taskProject);
@@ -88,18 +118,30 @@ function createTaskBottom() {
 }
 
 function createTask(taskData) {
-	const task = document.createElement("div");
-	task.classList.add("task");
+	const task = createDOMElement({
+		tagName: "div",
+		classes: ["task"],
+	});
 
 	const taskHead = createTaskHead(taskData);
 
-	const description = document.createElement("div");
-	description.innerHTML = taskData.description;
+	const description = createDOMElement({
+		tagName: "div",
+		classes: ["description"],
+		innerText: taskData.description,
+	});
 
 	const taskBottom = createTaskBottom(taskData);
 
 	task.append(taskHead, description, taskBottom);
 	return task;
+}
+
+function createLine() {
+	return createDOMElement({
+		tagName: "div",
+		classes: ["line"],
+	});
 }
 
 const taskList = document.querySelector(".task-list");
@@ -108,11 +150,23 @@ console.log(taskList);
 taskList.append(
 	createTask({
 		title: "Coding",
+		description:
+			"sajdnas ij iosj oiasjio asi isdj ois aiosdjas asod asdidj siojioadj iasi dasid osj sod",
+		dueDate: "2 june",
+		priority: "p1",
+		project: "Code",
+	}),
+	createLine()
+);
+taskList.append(
+	createTask({
+		title: "Coding",
 		description: "Make TODO App Using js",
 		dueDate: "2 june",
 		priority: "p1",
 		project: "Code",
-	})
+	}),
+	createLine()
 );
 // const task1 = taskModule.createTaskObj({
 // 	title: "Coding",
@@ -120,65 +174,4 @@ taskList.append(
 // 	dueDate: "2 june",
 // 	priority: "p1",
 // 	project: "Code",
-// });
-
-// console.table(task1);
-// task1.toggleStatus();
-// console.table(task1);
-// task1.updateDetails({
-// 	title: "new title",
-// 	date: "new Date",
-// 	status: false,
-// });
-// console.table(task1);
-
-// projectModule.createProject("College");
-// console.table(projectModule.createdProjects);
-// projectModule.createProject("Skills");
-// console.table(projectModule.createdProjects);
-
-// // Theme management
-// class ThemeManager {
-// 	constructor() {
-// 		this.initTheme();
-// 		this.bindEvents();
-// 	}
-
-// 	initTheme() {
-// 		// Check for saved theme preference or default to light mode
-// 		const savedTheme = localStorage.getItem("theme") || "light";
-// 		this.setTheme(savedTheme);
-// 	}
-
-// 	setTheme(theme) {
-// 		const root = document.documentElement;
-
-// 		if (theme === "dark") {
-// 			root.setAttribute("data-theme", "dark");
-// 		} else {
-// 			root.removeAttribute("data-theme");
-// 		}
-
-// 		// Save theme preference
-// 		localStorage.setItem("theme", theme);
-// 	}
-
-// 	toggleTheme() {
-// 		const root = document.documentElement;
-// 		const currentTheme = root.getAttribute("data-theme");
-// 		const newTheme = currentTheme === "dark" ? "light" : "dark";
-// 		this.setTheme(newTheme);
-// 	}
-
-// 	bindEvents() {
-// 		const themeToggle = document.getElementById("theme-toggle");
-// 		if (themeToggle) {
-// 			themeToggle.addEventListener("click", () => this.toggleTheme());
-// 		}
-// 	}
-// }
-
-// // Initialize theme manager when DOM is loaded
-// document.addEventListener("DOMContentLoaded", () => {
-// 	new ThemeManager();
 // });
