@@ -5,7 +5,9 @@ import "../css/normalize.css";
 import "../css/font.css";
 import "../css/style.css";
 import home from "./home.js";
+import ThemeManager from "./themeManager.js";
 
+new ThemeManager();
 home.renderSideBar();
 // const task1 = taskModule.createTaskObj({
 // 	title: "Coding",

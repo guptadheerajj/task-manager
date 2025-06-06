@@ -24,6 +24,7 @@
 		"postdeploy": "git checkout main"
 	},
 	"dependencies": {
-		"date-fns": "^4.1.0"
+		"date-fns": "^4.1.0",
+		"dompurify": "^3.2.6"
 	}
 }
