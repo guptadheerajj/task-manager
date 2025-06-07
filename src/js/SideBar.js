@@ -107,13 +107,24 @@ export default class SideBar {
 
 	constructor() {
 		this.renderSideBar();
+		this.bindEvents();
+		this.fireClickOnRandomTaskTab();
+	}
+
+	fireClickOnRandomTaskTab() {
+		const randomTaskTab = document.querySelector(
+			"[data-tab-name = 'Random Todos']"
+		);
+		randomTaskTab.click();
 	}
 
 	createButtonElement({ svgCode, spanText, spanClasses }) {
 		const button = document.createElement("button");
 		button.classList.add("side-row");
+		button.setAttribute("data-tab-name", spanText);
 		if (!(spanText === "Add Task")) {
 			button.classList.add("tab");
+			button.setAttribute("data-tab", "");
 		}
 		button.insertAdjacentHTML("afterbegin", svgCode);
 
@@ -204,6 +215,8 @@ export default class SideBar {
 	createProjectNode(projectName) {
 		const button = document.createElement("button");
 		button.classList.add("side-row", "tab", "top2px");
+		button.setAttribute("data-tab", "");
+		button.setAttribute("data-tab-name", projectName);
 		button.textContent = "# " + projectName;
 
 		return button;
@@ -254,5 +267,24 @@ export default class SideBar {
 		const sideBottom = this.createSideBottom();
 
 		sideBar.append(sideTop, sideMiddle, line, sideBottom);
+	}
+
+	switchTabs(event) {
+		const target = event.target.closest("[data-tab]");
+		if (!target) {
+			return;
+		}
+		// remove current active tab
+		const allTabs = document.querySelectorAll("[data-tab");
+		allTabs.forEach((tab) => {
+			tab.classList.remove("active-tab");
+		});
+
+		target.classList.add("active-tab");
+	}
+
+	bindEvents() {
+		const sideBar = document.querySelector(".side-bar");
+		sideBar.addEventListener("click", this.switchTabs);
 	}
 }
