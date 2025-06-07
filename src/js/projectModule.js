@@ -62,12 +62,28 @@ export default (function () {
 		return Object.keys(createdProjects);
 	}
 
+	function getSpecificProjectTasks(projectName) {
+		return createdProjects[projectName];
+	}
+
+	function getAllTasks() {
+		const allTasks = [];
+		for (const project of Object.values(createdProjects)) {
+			for (const task of project) {
+				allTasks.push(task);
+			}
+		}
+		return allTasks;
+	}
+
 	return {
 		createProject,
 		pushTask,
 		popTask,
 		updateDetails,
 		getAllProjectNames,
+		getAllTasks,
+		getSpecificProjectTasks,
 		createdProjects,
 	};
 })();

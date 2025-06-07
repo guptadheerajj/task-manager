@@ -1,4 +1,5 @@
 import projectModule from "./projectModule.js";
+import renderTaskList from "./renderTaskList.js";
 
 export default class SideBar {
 	static plusSvg = `
@@ -219,6 +220,7 @@ export default class SideBar {
 		const button = document.createElement("button");
 		button.classList.add("side-row", "tab", "top2px");
 		button.setAttribute("data-tab", "");
+		button.setAttribute("data-project", true);
 		button.setAttribute("data-tab-name", projectName);
 		button.textContent = "# " + projectName;
 
@@ -277,6 +279,12 @@ export default class SideBar {
 		doubleClick.play();
 	}
 
+	static renderMainContent(target) {
+		const mainHeading = document.querySelector(".main-head > h1");
+		mainHeading.textContent = target.dataset.tabName;
+		renderTaskList.renderTasks(target);
+	}
+
 	switchTabs(event) {
 		const target = event.target.closest("[data-tab]");
 		if (!target) {
@@ -295,6 +303,7 @@ export default class SideBar {
 		}
 
 		target.classList.add("active-tab");
+		SideBar.renderMainContent(target);
 	}
 
 	bindEvents() {
