@@ -4,12 +4,14 @@ import middleModule from "./middleModule";
 import "../css/normalize.css";
 import "../css/font.css";
 import "../css/style.css";
-import home from "./home.js";
+// import home from "./home.js";
 import ThemeManager from "./themeManager.js";
-import { da, id } from "date-fns/locale";
+// import { da, id } from "date-fns/locale";
+import SideBar from "./SideBar.js";
 
 new ThemeManager();
-home.renderSideBar();
+new SideBar();
+// home.renderSideBar();
 
 function createDOMElement({ tagName, classes, innerText }) {
 	const element = document.createElement(tagName);
