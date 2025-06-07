@@ -105,6 +105,8 @@ export default class SideBar {
 	</svg>
 	`;
 
+	static skipSoundForNextClick = false;
+
 	constructor() {
 		this.renderSideBar();
 		this.bindEvents();
@@ -115,6 +117,7 @@ export default class SideBar {
 		const randomTaskTab = document.querySelector(
 			"[data-tab-name = 'Random Todos']"
 		);
+		SideBar.skipSoundForNextClick = true;
 		randomTaskTab.click();
 	}
 
@@ -269,6 +272,11 @@ export default class SideBar {
 		sideBar.append(sideTop, sideMiddle, line, sideBottom);
 	}
 
+	static playSound() {
+		const doubleClick = document.querySelector(".double-click");
+		doubleClick.play();
+	}
+
 	switchTabs(event) {
 		const target = event.target.closest("[data-tab]");
 		if (!target) {
@@ -279,6 +287,12 @@ export default class SideBar {
 		allTabs.forEach((tab) => {
 			tab.classList.remove("active-tab");
 		});
+
+		if (!SideBar.skipSoundForNextClick) {
+			SideBar.playSound();
+		} else {
+			SideBar.skipSoundForNextClick = false;
+		}
 
 		target.classList.add("active-tab");
 	}
