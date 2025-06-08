@@ -5,6 +5,7 @@ import "../css/style.css";
 import ThemeManager from "./themeManager.js";
 import SideBar from "./SideBar.js";
 import renderTask from "./renderTask.js";
+import dialog from "./dialog.js";
 
 new ThemeManager();
 new SideBar();
@@ -41,3 +42,7 @@ taskList.append(
 		project: "Code",
 	})
 );
+
+dialog.appendDialog();
+const modalDialog = document.querySelector("dialog");
+modalDialog.showModal();
